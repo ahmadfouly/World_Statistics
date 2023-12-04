@@ -4,7 +4,6 @@ import numpy as np
 import altair as alt
 import streamlit as st
 import pydeck as pdk
-from geopy.geocoders import Nominatim
 
 
 # Function to load data
@@ -17,12 +16,6 @@ def load_data(csv):
     df[['Latitude', 'Longitude']] = df['Entity'].apply(lambda x: pd.Series(get_lat_long(x)))
     
     return df
-
-# Function to get latitude and longitude
-def get_lat_long(country):
-    geolocator = Nominatim(user_agent="world_data_explorer")
-    location = geolocator.geocode(country)
-    return location.latitude, location.longitude if location else (None, None)
 
 
 # Function to create map
