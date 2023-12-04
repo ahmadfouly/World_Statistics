@@ -12,9 +12,6 @@ def load_data(csv):
     df = pd.read_csv(csv)
     df['Year'] = df['Year'].astype(int)  # Convert 'Year' to integer
     
-    # Adding latitude and longitude
-    df[['Latitude', 'Longitude']] = df['Entity'].apply(lambda x: pd.Series(get_lat_long(x)))
-    
     return df
 
 
@@ -62,7 +59,6 @@ with st.sidebar:
     if chart_type == "Scatterplot":
         second_metric = st.selectbox("Select Second Metric for Scatterplot", metrics)
 
-view_mode = st.sidebar.radio("View Mode", ["Chart", "Map"])
 
 # Main panel
 # Filter data based on selected countries and time range
