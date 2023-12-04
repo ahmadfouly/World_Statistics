@@ -27,11 +27,7 @@ with st.sidebar:
     selected_metrics = st.multiselect("Select Metrics", metrics)
 
     # Time range slider
-    world_data['Year'] = world_data['Year'].astype(int)
-    years = world_data['Year'].unique()
-    min_year, max_year = min(years), max(years)
-    selected_years = st.slider("Select Time Range", min_year, max_year, (min_year, max_year), 1)
-    
+
     # Select box for choosing chart type
     chart_type = st.selectbox("Select Chart Type", ["Line Graph", "Scatterplot", "Boxplot"])
 
