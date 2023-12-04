@@ -9,6 +9,7 @@ import pydeck as pdk
 @st.cache_data
 def load_data(csv):
     df = pd.read_csv(csv)
+    df['Year'] = df['Year'].astype(int)  # Convert 'Year' to integer
     return df
 
 # Load the data
@@ -27,7 +28,7 @@ with st.sidebar:
     selected_metrics = st.multiselect("Select Metrics", metrics)
 
     # Time range slider
-    years = world_data['Year'].unique()
+    years = sorted(world_data['Year'].unique())
     min_year, max_year = min(years), max(years)
     selected_years = st.slider("Select Time Range", min_year, max_year, (min_year, max_year), 1)
     
