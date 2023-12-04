@@ -45,6 +45,10 @@ def create_chart(metric):
     ).interactive()
     return chart
 
+
 # Render chart for each selected metric
 for metric in selected_metrics:
+    # Set a dynamic title for each chart
+    st.title(f"{metric} Trends for Selected Countries")
+    
     st.altair_chart(create_chart(metric), use_container_width=True)
