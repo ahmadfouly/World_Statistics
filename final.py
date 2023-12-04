@@ -10,7 +10,7 @@ import pydeck as pdk
 @st.cache_data
 def load_data(csv):
     df = pd.read_csv(csv)
-    df['Year'] = df['Year'].astype(int)  # Convert 'Year' to integer
+    
     
     return df
 
