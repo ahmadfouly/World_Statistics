@@ -30,25 +30,41 @@ with st.sidebar:
     years = world_data['Year'].unique()
     min_year, max_year = min(years), max(years)
     selected_years = st.slider("Select Time Range", min_year, max_year, (min_year, max_year), 1)
+    
+    # Select box for choosing chart type
+    chart_type = st.selectbox("Select Chart Type", ["Line Graph", "Scatterplot", "Boxplot"])
 
 # Main panel
 # Filter data based on selected countries and time range
 filtered_data = world_data[(world_data['Entity'].isin(selected_countries)) & (world_data['Year'].between(*selected_years))]
-
-# Function to create chart for each metric
-def create_chart(metric):
-    chart = alt.Chart(filtered_data).mark_line(point=True).encode(
-        x='Year:N',
-        y=alt.Y(f'{metric}:Q', axis=alt.Axis(title=metric)),
-        color='Entity:N',
-        tooltip=['Entity', 'Year', metric]
-    ).interactive()
-    return chart
-
+def create_chart(metric, chart_type):
+    if chart_type == "Line Graph":
+        chart = alt.Chart(filtered_data).mark_line(point=True).encode(
+            x='Year:N',
+            y=alt.Y(f'{metric}:Q', axis=alt.Axis(title=metric)),
+            color='Entity:N',
+            tooltip=['Entity', 'Year', metric]
+        )
+    elif chart_type == "Scatterplot":
+        chart = alt.Chart(filtered_data).mark_circle().encode(
+            x='Year:N',
+            y=alt.Y(f'{metric}:Q', axis=alt.Axis(title=metric)),
+            color='Entity:N',
+            tooltip=['Entity', 'Year', metric]
+        )
+    elif chart_type == "Boxplot":
+        chart = alt.Chart(filtered_data).mark_boxplot().encode(
+            x='Year:N',
+            y=alt.Y(f'{metric}:Q', axis=alt.Axis(title=metric)),
+            color='Entity:N'
+        )
+    return chart.interactive()
 
 # Render chart for each selected metric
 for metric in selected_metrics:
     # Set a dynamic title for each chart
     st.markdown(f"<h2 style='color: green;'>{metric}</h2>", unsafe_allow_html=True)
     
-    st.altair_chart(create_chart(metric), use_container_width=True)
+    st.altair_chart(create_chart(metric, chart_type), use_container_width=True)
+
+
