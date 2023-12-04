@@ -27,8 +27,8 @@ with st.sidebar:
     selected_metrics = st.multiselect("Select Metrics", metrics)
 
     # Time range slider
-    years = world_data['Year'].unique()
     world_data['Year'] = world_data['Year'].astype(int)
+    years = world_data['Year'].unique()
     min_year, max_year = min(years), max(years)
     selected_years = st.slider("Select Time Range", min_year, max_year, (min_year, max_year), 1)
     
