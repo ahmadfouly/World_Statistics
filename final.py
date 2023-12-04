@@ -15,7 +15,7 @@ def load_data(csv):
 world_data = load_data("CountriesDataImputed.csv")
 
 # Streamlit app layout
-st.title("Interactive Country Statistics Visualization")
+st.title("Countries Metrics Visualizations")
 
 # Sidebar for user inputs
 with st.sidebar:
