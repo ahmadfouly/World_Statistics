@@ -15,7 +15,7 @@ def load_data(csv):
 world_data = load_data("CountriesDataImputed.csv")
 
 # Streamlit app layout
-st.title("World Data Explorer")
+st.markdown("<h1 style='color: blue; font-size: 40px;'>World Data Explorer</h1>", unsafe_allow_html=True)
 
 # Sidebar for user inputs
 with st.sidebar:
@@ -49,6 +49,6 @@ def create_chart(metric):
 # Render chart for each selected metric
 for metric in selected_metrics:
     # Set a dynamic title for each chart
-    st.title(f"{metric}")
+    st.markdown(f"<h2 style='color: green;'>{metric}</h2>", unsafe_allow_html=True)
     
     st.altair_chart(create_chart(metric), use_container_width=True)
