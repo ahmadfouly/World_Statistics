@@ -4,13 +4,44 @@ import numpy as np
 import altair as alt
 import streamlit as st
 import pydeck as pdk
+from geopy.geocoders import Nominatim
+
 
 # Function to load data
 @st.cache_data
 def load_data(csv):
     df = pd.read_csv(csv)
     df['Year'] = df['Year'].astype(int)  # Convert 'Year' to integer
+    
+    # Adding latitude and longitude
+    df[['Latitude', 'Longitude']] = df['Entity'].apply(lambda x: pd.Series(get_lat_long(x)))
+    
     return df
+
+# Function to get latitude and longitude
+def get_lat_long(country):
+    geolocator = Nominatim(user_agent="world_data_explorer")
+    location = geolocator.geocode(country)
+    return location.latitude, location.longitude if location else (None, None)
+
+
+# Function to create map
+def create_map(data, latitude_col, longitude_col, size_col=None, color_col=None):
+    # Define the layer
+    layer = pdk.Layer(
+        'ScatterplotLayer',
+        data,
+        get_position=[longitude_col, latitude_col],
+        get_color=color_col or [0, 0, 255, 200],  # Default color: blue
+        get_radius=size_col or 10000,  # Default size
+        pickable=True
+    )
+
+    # Define the view state
+    view_state = pdk.ViewState(latitude=data[latitude_col].mean(), longitude=data[longitude_col].mean(), zoom=4)
+
+    # Return the deck.gl map
+    return pdk.Deck(layers=[layer], initial_view_state=view_state)
 
 # Load the data
 world_data = load_data("CountriesDataImputed.csv")
@@ -37,6 +68,8 @@ with st.sidebar:
 
     if chart_type == "Scatterplot":
         second_metric = st.selectbox("Select Second Metric for Scatterplot", metrics)
+
+view_mode = st.sidebar.radio("View Mode", ["Chart", "Map"])
 
 # Main panel
 # Filter data based on selected countries and time range
