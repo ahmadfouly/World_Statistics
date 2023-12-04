@@ -34,10 +34,16 @@ with st.sidebar:
     # Select box for choosing chart type
     chart_type = st.selectbox("Select Chart Type", ["Line Graph", "Scatterplot", "Boxplot"])
 
+    if chart_type == "Scatterplot":
+        second_metric = st.selectbox("Select Second Metric for Scatterplot", metrics)
+
 # Main panel
 # Filter data based on selected countries and time range
 filtered_data = world_data[(world_data['Entity'].isin(selected_countries)) & (world_data['Year'].between(*selected_years))]
-def create_chart(metric, chart_type):
+
+
+# Function to create chart for each metric
+def create_chart(metric, chart_type, second_metric=None):
     if chart_type == "Line Graph":
         chart = alt.Chart(filtered_data).mark_line(point=True).encode(
             x='Year:N',
@@ -47,14 +53,14 @@ def create_chart(metric, chart_type):
         )
     elif chart_type == "Scatterplot":
         chart = alt.Chart(filtered_data).mark_circle().encode(
-            x='Year:N',
-            y=alt.Y(f'{metric}:Q', axis=alt.Axis(title=metric)),
+            x=alt.X(f'{metric}:Q', axis=alt.Axis(title=metric)),
+            y=alt.Y(f'{second_metric}:Q', axis=alt.Axis(title=second_metric)),
             color='Entity:N',
-            tooltip=['Entity', 'Year', metric]
+            tooltip=['Entity', metric, second_metric]
         )
     elif chart_type == "Boxplot":
         chart = alt.Chart(filtered_data).mark_boxplot().encode(
-            x='Year:N',
+            x='Entity:N',
             y=alt.Y(f'{metric}:Q', axis=alt.Axis(title=metric)),
             color='Entity:N'
         )
@@ -65,6 +71,4 @@ for metric in selected_metrics:
     # Set a dynamic title for each chart
     st.markdown(f"<h2 style='color: green;'>{metric}</h2>", unsafe_allow_html=True)
     
-    st.altair_chart(create_chart(metric, chart_type), use_container_width=True)
-
-
+    st.altair_chart(create_chart(metric, chart_type, second_metric if chart_type == "Scatterplot" else None), use_container_width=True)
