@@ -28,6 +28,7 @@ with st.sidebar:
 
     # Time range slider
     years = world_data['Year'].unique()
+    world_data['Year'] = world_data['Year'].astype(int)
     min_year, max_year = min(years), max(years)
     selected_years = st.slider("Select Time Range", min_year, max_year, (min_year, max_year), 1)
     
