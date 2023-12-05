@@ -6,4 +6,4 @@ See how countries perform based on different metrics and compare!
 
 Visualize statistics of various countries. Users can explore and analyze country-specific data through dynamic visualizations.
 
-[title](https://worldstatistics-ahmad-fouly.streamlit.app)
+[World_Statistics](https://worldstatistics-ahmad-fouly.streamlit.app)
