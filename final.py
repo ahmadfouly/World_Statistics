@@ -34,7 +34,7 @@ def create_map(data, latitude_col, longitude_col, size_col=None, color_col=None)
     return pdk.Deck(layers=[layer], initial_view_state=view_state)
 
 # Load the data
-world_data = load_data("CountriesDataImputed.csv")
+world_data = load_data("CountriesData.csv")
 
 # Streamlit app layout
 st.markdown("<h1 style='color: blue; font-size: 40px;'>World Data Explorer</h1>", unsafe_allow_html=True)
