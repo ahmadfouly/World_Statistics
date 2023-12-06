@@ -21,20 +21,18 @@ world_data = load_data("CountriesData.csv")
 
 # Streamlit app layout
 
-# Add custom CSS to set the background
-world_map_url = "https://img.freepik.com/free-vector/old-colored-map_1284-34072.jpg?w=1380&t=st=1701883226~exp=1701883826~hmac=6b50be513d0529aea23537ad1006300469e67d112b68b4c0109e51e01add26cc" 
-css = f"""
-<style>
-body {{
-background-image: url({world_map_url});
-background-size: cover;
-}}
-</style>
-"""
+st.markdown("""
+# World Data Explorer
 
-st.markdown(css, unsafe_allow_html=True)
+Welcome to the World Data Explorer, a Streamlit application designed to provide interactive visualizations of global data. This app allows users to explore various metrics and trends across different countries.
 
-st.markdown("<h1 style='color: blue; font-size: 40px;'>World Data Explorer</h1>", unsafe_allow_html=True)
+1. **Select Countries:** Choose one or more countries from the multi-select option in the sidebar.
+2. **Choose Metrics:** Select the metrics you are interested in exploring.
+3. **Set Time Range:** Use the slider to define the time range for your data.
+4. **Pick a Chart Type:** Choose how you want to visualize the data—via line graphs, scatterplots, or boxplots.
+
+Dive into the World Data Explorer and unlock insights from global data trends!
+""", unsafe_allow_html=True)
 
 
 # Sidebar for user inputs
