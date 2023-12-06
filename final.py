@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import streamlit as st
-import pydeck as pdk
 
 
 # Function to load data
@@ -13,25 +12,6 @@ def load_data(csv):
     
     
     return df
-
-
-# Function to create map
-def create_map(data, latitude_col, longitude_col, size_col=None, color_col=None):
-    # Define the layer
-    layer = pdk.Layer(
-        'ScatterplotLayer',
-        data,
-        get_position=[longitude_col, latitude_col],
-        get_color=color_col or [0, 0, 255, 200],  # Default color: blue
-        get_radius=size_col or 10000,  # Default size
-        pickable=True
-    )
-
-    # Define the view state
-    view_state = pdk.ViewState(latitude=data[latitude_col].mean(), longitude=data[longitude_col].mean(), zoom=4)
-
-    # Return the deck.gl map
-    return pdk.Deck(layers=[layer], initial_view_state=view_state)
 
 # Load the data
 world_data = load_data("CountriesData.csv")
