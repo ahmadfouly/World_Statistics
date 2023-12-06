@@ -3,12 +3,18 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import streamlit as st
-import folium
 
-m = folium.Map(location=[45.5236, -122.6750])
-from streamlit_folium import st_folium
 
-st_folium(m, width=700, height=500)
+page_bg_img = '''
+<style>
+body {
+background-image: url("https://media.istockphoto.com/id/1393592694/photo/world-map-3d-render-topographic-map-color.jpg?s=1024x1024&w=is&k=20&c=WSP24IIdhSoeMOSyiX2t1m9yYRU-oRHCytHKXwKJ848=");
+background-size: cover;
+}
+</style>
+'''
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Function to load data
 @st.cache_data
