@@ -3,7 +3,12 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import streamlit as st
+import folium
 
+m = folium.Map(location=[45.5236, -122.6750])
+from streamlit_folium import st_folium
+
+st_folium(m, width=700, height=500)
 
 # Function to load data
 @st.cache_data
