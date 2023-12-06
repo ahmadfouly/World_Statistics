@@ -29,7 +29,7 @@ Welcome to the World Data Explorer, a Streamlit application designed to provide 
 1. **Select Countries:** Choose one or more countries from the multi-select option in the sidebar.
 2. **Choose Metrics:** Select the metrics you are interested in exploring.
 3. **Set Time Range:** Use the slider to define the time range for your data.
-4. **Pick a Chart Type:** Choose how you want to visualize the data—via line graphs, scatterplots, or boxplots.
+4. **Pick a Chart Type:** Choose how you want to visualize the data.
 
 Dive into the World Data Explorer and unlock insights from global data trends!
 """, unsafe_allow_html=True)
