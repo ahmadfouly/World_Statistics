@@ -101,6 +101,23 @@ def create_chart(metric, chart_type, second_metric=None):
             y=alt.Y(f'{metric}:Q', axis=alt.Axis(title=metric)),
             color='Entity:N'
         )
+    elif chart_type == "Histogram":
+        chart = alt.Chart(filtered_data).mark_bar().encode(
+            x=alt.X(f'{metric}:Q', bin=True),
+            y='count()',
+            color='Entity:N'
+        )
+    elif chart_type == "Heatmap":
+        chart = alt.Chart(filtered_data).mark_rect().encode(
+            x='Year:O',
+            y='Entity:N',
+            color=alt.Color(f'{metric}:Q')
+        )
+    elif chart_type == "Pie Chart":
+        chart = alt.Chart(filtered_data).mark_arc().encode(
+            theta=alt.Theta(f'{metric}:Q'),
+            color='Entity:N'
+        )
     return chart.interactive()
 
 # Render chart for each selected metric
@@ -108,4 +125,4 @@ for metric in selected_metrics:
     # Set a dynamic title for each chart
     st.markdown(f"<h2 style='color: green;'>{metric}</h2>", unsafe_allow_html=True)
     
-    st.altair_chart(create_chart(metric, chart_type, second_metric if chart_type == "Scatterplot" else None), use_container_width=True)
+    st.altair_chart(create_chart(metric, chart_type, second_metric if chart_type in ["Scatterplot", "Heatmap"] else None), use_container_width=True)
