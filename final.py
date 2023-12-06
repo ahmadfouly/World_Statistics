@@ -20,18 +20,21 @@ world_data = load_data("CountriesData.csv")
 
 
 # Streamlit app layout
-st.markdown("<h1 style='color: blue; font-size: 40px;'>World Data Explorer</h1>", unsafe_allow_html=True)
 
-page_bg_img = '''
+# Add custom CSS to set the background
+world_map_url = "https://img.freepik.com/free-vector/old-colored-map_1284-34072.jpg?w=1380&t=st=1701883226~exp=1701883826~hmac=6b50be513d0529aea23537ad1006300469e67d112b68b4c0109e51e01add26cc" 
+css = f"""
 <style>
-body {
-background-image: url("https://media.istockphoto.com/id/1393592694/photo/world-map-3d-render-topographic-map-color.jpg?s=1024x1024&w=is&k=20&c=WSP24IIdhSoeMOSyiX2t1m9yYRU-oRHCytHKXwKJ848=");
+body {{
+background-image: url({world_map_url});
 background-size: cover;
-}
+}}
 </style>
-'''
+"""
 
-st.markdown(page_bg_img, unsafe_allow_html=True)
+st.markdown(css, unsafe_allow_html=True)
+
+st.markdown("<h1 style='color: blue; font-size: 40px;'>World Data Explorer</h1>", unsafe_allow_html=True)
 
 
 # Sidebar for user inputs
