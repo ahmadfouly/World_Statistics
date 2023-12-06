@@ -39,10 +39,17 @@ Dive into the World Data Explorer and unlock insights from global data trends!
 with st.sidebar:
     # Multi-select for selecting countries
     selected_countries = st.multiselect("Select Countries", world_data['Entity'].unique())
-
-    # Multi-select for selecting metrics
+# Multi-select for selecting metrics
     metrics = [col for col in world_data.columns if world_data[col].dtype != 'object' and col != 'Year']
-    selected_metrics = st.multiselect("Select Metrics", metrics)
+    all_metrics_option = "All Metrics"
+    selected_metrics = st.multiselect("Select Metrics", [all_metrics_option] + metrics)
+        # Check if 'All Metrics' is selected
+    if all_metrics_option in selected_metrics:
+        # If other metrics are also selected, remove them
+        if len(selected_metrics) > 1:
+            selected_metrics = [all_metrics_option]
+        # Set selected metrics to all metrics
+        selected_metrics = metrics
 
     # Time range slider
     years = sorted(world_data['Year'].unique())
