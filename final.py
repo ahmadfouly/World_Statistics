@@ -34,16 +34,17 @@ Welcome to the World Data Explorer, a Streamlit application designed to provide 
 Dive into the World Data Explorer and unlock insights from global data trends!
 """, unsafe_allow_html=True)
 
-
 # Sidebar for user inputs
 with st.sidebar:
     # Multi-select for selecting countries
     selected_countries = st.multiselect("Select Countries", world_data['Entity'].unique())
-# Multi-select for selecting metrics
+
+    # Multi-select for selecting metrics
     metrics = [col for col in world_data.columns if world_data[col].dtype != 'object' and col != 'Year']
     all_metrics_option = "All Metrics"
     selected_metrics = st.multiselect("Select Metrics", [all_metrics_option] + metrics)
-        # Check if 'All Metrics' is selected
+    
+    # Check if 'All Metrics' is selected
     if all_metrics_option in selected_metrics:
         # If other metrics are also selected, remove them
         if len(selected_metrics) > 1:
@@ -59,14 +60,24 @@ with st.sidebar:
     # Select box for choosing chart type
     chart_type = st.selectbox("Select Chart Type", ["Line Graph", "Scatterplot", "Boxplot"])
 
+    # Adjusting the chart type selection logic
+    second_metric = None
     if chart_type == "Scatterplot":
         second_metric = st.selectbox("Select Second Metric for Scatterplot", metrics)
 
-
 # Main panel
+# Responsive design using columns
+col1, col2 = st.columns(2)
+with col1:
+    # Elements for the first column
+    st.markdown("## Chart Visualization")
+
+with col2:
+    # Elements for the second column
+    st.markdown("## Data Insights")
+
 # Filter data based on selected countries and time range
 filtered_data = world_data[(world_data['Entity'].isin(selected_countries)) & (world_data['Year'].between(*selected_years))]
-
 
 # Function to create chart for each metric
 def create_chart(metric, chart_type, second_metric=None):
