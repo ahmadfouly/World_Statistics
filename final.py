@@ -63,10 +63,7 @@ with st.sidebar:
     second_metric = None
     if chart_type == "Scatterplot":
         second_metric = st.selectbox("Select Second Metric for Scatterplot", metrics)
-    elif chart_type == "Heatmap":
-        second_metric = st.selectbox("Select Second Metric for Heatmap", metrics)
-    elif chart_type == "Pie Chart":
-        pie_metric = st.selectbox("Select Metric for Pie Chart", metrics)
+
 
 # Filter data based on selected countries and time range
 filtered_data = world_data[(world_data['Entity'].isin(selected_countries)) & (world_data['Year'].between(*selected_years))]
