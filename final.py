@@ -5,16 +5,7 @@ import altair as alt
 import streamlit as st
 
 
-page_bg_img = '''
-<style>
-body {
-background-image: url("https://media.istockphoto.com/id/1393592694/photo/world-map-3d-render-topographic-map-color.jpg?s=1024x1024&w=is&k=20&c=WSP24IIdhSoeMOSyiX2t1m9yYRU-oRHCytHKXwKJ848=");
-background-size: cover;
-}
-</style>
-'''
 
-st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Function to load data
 @st.cache_data
@@ -27,8 +18,21 @@ def load_data(csv):
 # Load the data
 world_data = load_data("CountriesData.csv")
 
+
 # Streamlit app layout
 st.markdown("<h1 style='color: blue; font-size: 40px;'>World Data Explorer</h1>", unsafe_allow_html=True)
+
+page_bg_img = '''
+<style>
+body {
+background-image: url("https://media.istockphoto.com/id/1393592694/photo/world-map-3d-render-topographic-map-color.jpg?s=1024x1024&w=is&k=20&c=WSP24IIdhSoeMOSyiX2t1m9yYRU-oRHCytHKXwKJ848=");
+background-size: cover;
+}
+</style>
+'''
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 
 # Sidebar for user inputs
 with st.sidebar:
