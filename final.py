@@ -33,7 +33,6 @@ Welcome to the World Data Explorer, a Streamlit application designed to provide 
 
 Dive into the World Data Explorer and unlock insights from global data trends!
 """, unsafe_allow_html=True)
-
 # Sidebar for user inputs
 with st.sidebar:
     # Multi-select for selecting countries
@@ -58,26 +57,20 @@ with st.sidebar:
     selected_years = st.slider("Select Time Range", min_year, max_year, (min_year, max_year), 1)
     
     # Select box for choosing chart type
-    chart_type = st.selectbox("Select Chart Type", ["Line Graph", "Scatterplot", "Boxplot"])
+    chart_type = st.selectbox("Select Chart Type", ["Line Graph", "Scatterplot", "Boxplot", "Histogram", "Heatmap", "Pie Chart"])
 
-    # Adjusting the chart type selection logic
+    # Additional options based on chart type
     second_metric = None
     if chart_type == "Scatterplot":
         second_metric = st.selectbox("Select Second Metric for Scatterplot", metrics)
-
-# Main panel
-# Responsive design using columns
-col1, col2 = st.columns(2)
-with col1:
-    # Elements for the first column
-    st.markdown("## Chart Visualization")
-
-with col2:
-    # Elements for the second column
-    st.markdown("## Data Insights")
+    elif chart_type == "Heatmap":
+        second_metric = st.selectbox("Select Second Metric for Heatmap", metrics)
+    elif chart_type == "Pie Chart":
+        pie_metric = st.selectbox("Select Metric for Pie Chart", metrics)
 
 # Filter data based on selected countries and time range
 filtered_data = world_data[(world_data['Entity'].isin(selected_countries)) & (world_data['Year'].between(*selected_years))]
+
 
 # Function to create chart for each metric
 def create_chart(metric, chart_type, second_metric=None):
