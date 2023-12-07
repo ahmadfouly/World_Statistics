@@ -17,12 +17,16 @@ def set_bg_hack_url():
              background-size: cover;
              background-repeat: no-repeat;
              background-attachment: fixed;
+             color: white; /* This will set the text color to white */
+         }}
+         h1 {{
+             color: white; /* This will set the color of h1 headers to white */
          }}
          </style>
          """,
          unsafe_allow_html=True
      )
-
+    
 # Invoke the function to set the background
 set_bg_hack_url()
 
