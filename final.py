@@ -6,7 +6,6 @@ import streamlit as st
 
 
 
-
 # Function to load data
 @st.cache_data
 def load_data(csv):
@@ -35,6 +34,9 @@ To begin, open the sidebar by clicking on the '>' icon at the top-left corner.
 
 Dive into the World Data Explorer and unlock insights from global data trends!
 """, unsafe_allow_html=True)
+
+if 'selected_countries' not in st.session_state:
+    st.session_state['selected_countries'] = []
 
 def reset_selections():
     for key in st.session_state.keys():
