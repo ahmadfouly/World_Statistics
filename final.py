@@ -26,6 +26,8 @@ st.markdown("""
 
 Welcome to the World Data Explorer, a Streamlit application designed to provide interactive visualizations of global data. This app allows users to explore various metrics and trends across different countries.
 
+Click [here](#sidebar) to open the sidebar and begin.
+
 1. **Select Countries:** Choose one or more countries from the multi-select option in the sidebar.
 2. **Choose Metrics:** Select the metrics you are interested in exploring.
 3. **Set Time Range:** Use the slider to define the time range for your data.
