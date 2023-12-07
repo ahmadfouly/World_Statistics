@@ -118,4 +118,4 @@ for metric in selected_metrics:
     # Set a dynamic title for each chart
     st.markdown(f"<h2 style='color: green;'>{metric}</h2>", unsafe_allow_html=True)
     
-    st.altair_chart(create_chart(metric, chart_type, second_metric if chart_type in ["Scatterplot", "Heatmap"] else None), use_container_width=True)
+    st.altair_chart(create_chart(metric, chart_type, second_metric if chart_type in ["Scatterplot"] else None), use_container_width=True)
