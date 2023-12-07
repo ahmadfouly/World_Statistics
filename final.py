@@ -19,6 +19,7 @@ world_data = load_data("CountriesData.csv")
 
 
 # Streamlit app layout
+st.set_page_config(page_title="World Data Explorer", page_icon="🌍", layout="wide")
 
 st.markdown("""
 # World Data Explorer
@@ -34,7 +35,6 @@ To begin, open the sidebar by clicking on the '>' icon at the top-left corner.
 
 Dive into the World Data Explorer and unlock insights from global data trends!
 """, unsafe_allow_html=True)
-
 
 
 # Sidebar for user inputs
