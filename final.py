@@ -6,31 +6,6 @@ import streamlit as st
 
 # Streamlit app layout
 st.set_page_config(page_title="World Data Explorer", page_icon="🌍", layout="wide")
-# Define your custom CSS with the background image
-def set_bg_hack_url():
-    st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url("https://images.rawpixel.com/image_png_1100/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvam9iNjc5LTEyMy1wLWwxNjd4NHAzLnBuZw.png");
-             background-size: cover;
-             background-repeat: no-repeat;
-             background-attachment: fixed;
-             color: #000080; 
-         }}
-         .markdown-text-container h1, .markdown-text-container h2, .markdown-text-container h3, .markdown-text-container h4, .markdown-text-container h5, .markdown-text-container h6 {{
-             color: #000080; 
-         }}
-         .stTextInput > label, .stSelectbox > label, .stMultiSelect > label {{
-             color: #000080; 
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
-
-# Invoke the function to set the background
-set_bg_hack_url()
 
 
 # Function to load data
