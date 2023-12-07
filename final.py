@@ -16,13 +16,13 @@ def set_bg_hack_url():
              background-size: cover;
              background-repeat: no-repeat;
              background-attachment: fixed;
-             color: #333; /* Dark gray color for text for better readability */
+             color: #000080; 
          }}
          .markdown-text-container h1, .markdown-text-container h2, .markdown-text-container h3, .markdown-text-container h4, .markdown-text-container h5, .markdown-text-container h6 {{
-             color: #333; /* Apply the same dark gray color to all header tags within markdown text containers */
+             color: #000080; 
          }}
          .stTextInput > label, .stSelectbox > label, .stMultiSelect > label {{
-             color: #333; /* Apply the same dark gray color to all Streamlit widget labels */
+             color: #000080; 
          }}
          </style>
          """,
