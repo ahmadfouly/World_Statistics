@@ -7,6 +7,26 @@ import streamlit as st
 # Streamlit app layout
 st.set_page_config(page_title="World Data Explorer", page_icon="🌍", layout="wide")
 
+# Define your custom CSS with the background image
+def set_bg_hack_url():
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("https://img.freepik.com/premium-vector/abstract-mash-business-dots-scales-dark-background-with-map-world_23979-23.jpg?w=1480");
+             background-size: cover;
+             background-repeat: no-repeat;
+             background-attachment: fixed;
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
+
+# Invoke the function to set the background
+set_bg_hack_url()
+
+
 # Function to load data
 @st.cache_data
 def load_data(csv):
