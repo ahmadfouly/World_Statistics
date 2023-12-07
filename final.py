@@ -35,6 +35,14 @@ To begin, open the sidebar by clicking on the '>' icon at the top-left corner.
 
 Dive into the World Data Explorer and unlock insights from global data trends!
 """, unsafe_allow_html=True)
+
+def reset_selections():
+    for key in st.session_state.keys():
+        del st.session_state[key]
+
+if st.sidebar.button('Reset'):
+    reset_selections()
+
 # Sidebar for user inputs
 with st.sidebar:
     # Multi-select for selecting countries
