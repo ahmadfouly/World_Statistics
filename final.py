@@ -37,38 +37,16 @@ Dive into the World Data Explorer and unlock insights from global data trends!
 
 
 
-
-# Initialize session state for each widget
-if 'selected_countries' not in st.session_state:
-    st.session_state['selected_countries'] = []
-if 'selected_metrics' not in st.session_state:
-    st.session_state['selected_metrics'] = []
-if 'selected_years' not in st.session_state:
-    years = sorted(world_data['Year'].unique())
-    st.session_state['selected_years'] = [min(years), max(years)]
-if 'chart_type' not in st.session_state:
-    st.session_state['chart_type'] = "Line Graph"
-
-# Reset function
-def reset_selections():
-    st.session_state['selected_countries'] = []
-    st.session_state['selected_metrics'] = []
-    st.session_state['selected_years'] = [min(years), max(years)]
-    st.session_state['chart_type'] = "Line Graph"
-
 # Sidebar for user inputs
 with st.sidebar:
-    if st.button('Reset'):
-        reset_selections()
-
     # Multi-select for selecting countries
-    selected_countries = st.multiselect("Select Countries", world_data['Entity'].unique(), key='selected_countries')
+    selected_countries = st.multiselect("Select Countries", world_data['Entity'].unique())
 
     # Multi-select for selecting metrics
     metrics = [col for col in world_data.columns if world_data[col].dtype != 'object' and col != 'Year']
     all_metrics_option = "All Metrics"
-    selected_metrics = st.multiselect("Select Metrics", [all_metrics_option] + metrics, key='selected_metrics')
-
+    selected_metrics = st.multiselect("Select Metrics", [all_metrics_option] + metrics)
+    
     # Check if 'All Metrics' is selected
     if all_metrics_option in selected_metrics:
         # If other metrics are also selected, remove them
@@ -78,15 +56,18 @@ with st.sidebar:
         selected_metrics = metrics
 
     # Time range slider
-    selected_years = st.slider("Select Time Range", min(years), max(years), st.session_state['selected_years'], key='selected_years')
+    years = sorted(world_data['Year'].unique())
+    min_year, max_year = min(years), max(years)
+    selected_years = st.slider("Select Time Range", min_year, max_year, (min_year, max_year), 1)
     
     # Select box for choosing chart type
-    chart_type = st.selectbox("Select Chart Type", ["Line Graph", "Scatterplot", "Boxplot", "Histogram", "Heatmap", "Pie Chart"], key='chart_type')
+    chart_type = st.selectbox("Select Chart Type", ["Line Graph", "Scatterplot", "Boxplot", "Histogram", "Heatmap", "Pie Chart"])
 
     # Additional options based on chart type
     second_metric = None
     if chart_type == "Scatterplot":
-        second_metric = st.selectbox("Select Second Metric for Scatterplot", metrics, key='second_metric')
+        second_metric = st.selectbox("Select Second Metric for Scatterplot", metrics)
+
 
 # Filter data based on selected countries and time range
 filtered_data = world_data[(world_data['Entity'].isin(selected_countries)) & (world_data['Year'].between(*selected_years))]
