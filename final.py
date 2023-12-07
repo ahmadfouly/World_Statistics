@@ -35,34 +35,33 @@ To begin, open the sidebar by clicking on the '>' icon at the top-left corner.
 Dive into the World Data Explorer and unlock insights from global data trends!
 """, unsafe_allow_html=True)
 
-def reset_selections():
-    # Resetting each widget's value in the session state
-    st.session_state['selected_countries'] = []
-    st.session_state['selected_metrics'] = []
-    st.session_state['selected_years'] = [min_year, max_year]
-    st.session_state['chart_type'] = "Line Graph"
+
+
+# Initialize session state for each widget
 if 'selected_countries' not in st.session_state:
     st.session_state['selected_countries'] = []
 if 'selected_metrics' not in st.session_state:
     st.session_state['selected_metrics'] = []
 
-selected_countries = st.multiselect("Select Countries", world_data['Entity'].unique(), default=st.session_state['selected_countries'])
-selected_metrics = st.multiselect("Select Metrics", [all_metrics_option] + metrics, default=st.session_state['selected_metrics'])
-
-if st.sidebar.button('Reset'):
-    reset_selections()
+# Reset function
+def reset_selections():
+    st.session_state['selected_countries'] = []
+    st.session_state['selected_metrics'] = []
 
 
 # Sidebar for user inputs
 with st.sidebar:
+    if st.button('Reset'):
+        reset_selections()
+
     # Multi-select for selecting countries
-    selected_countries = st.multiselect("Select Countries", world_data['Entity'].unique())
+    selected_countries = st.multiselect("Select Countries", world_data['Entity'].unique(), default=st.session_state['selected_countries'])
 
     # Multi-select for selecting metrics
     metrics = [col for col in world_data.columns if world_data[col].dtype != 'object' and col != 'Year']
     all_metrics_option = "All Metrics"
-    selected_metrics = st.multiselect("Select Metrics", [all_metrics_option] + metrics)
-    
+    selected_metrics = st.multiselect("Select Metrics", [all_metrics_option] + metrics, default=st.session_state['selected_metrics'])
+
     # Check if 'All Metrics' is selected
     if all_metrics_option in selected_metrics:
         # If other metrics are also selected, remove them
