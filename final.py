@@ -6,7 +6,6 @@ import streamlit as st
 
 # Streamlit app layout
 st.set_page_config(page_title="World Data Explorer", page_icon="🌍", layout="wide")
-
 # Define your custom CSS with the background image
 def set_bg_hack_url():
     st.markdown(
@@ -17,16 +16,19 @@ def set_bg_hack_url():
              background-size: cover;
              background-repeat: no-repeat;
              background-attachment: fixed;
-             color: white; /* This will set the text color to white */
+             color: #333; /* Dark gray color for text for better readability */
          }}
-         h1 {{
-             color: white; /* This will set the color of h1 headers to white */
+         .markdown-text-container h1, .markdown-text-container h2, .markdown-text-container h3, .markdown-text-container h4, .markdown-text-container h5, .markdown-text-container h6 {{
+             color: #333; /* Apply the same dark gray color to all header tags within markdown text containers */
+         }}
+         .stTextInput > label, .stSelectbox > label, .stMultiSelect > label {{
+             color: #333; /* Apply the same dark gray color to all Streamlit widget labels */
          }}
          </style>
          """,
          unsafe_allow_html=True
      )
-    
+
 # Invoke the function to set the background
 set_bg_hack_url()
 
