@@ -24,9 +24,9 @@ world_data = load_data("CountriesData.csv")
 st.markdown("""
 # World Data Explorer
 
-Welcome to the World Data Explorer, a Streamlit application designed to provide interactive visualizations of global data. This app allows users to explore various metrics and trends across different countries.
+Explore various metrics and trends across different countries.
 
-Click [here](#st.sidebar) to open the sidebar and begin.
+To begin, open the sidebar by clicking on the '>' icon at the top-left corner.
 
 1. **Select Countries:** Choose one or more countries from the multi-select option in the sidebar.
 2. **Choose Metrics:** Select the metrics you are interested in exploring.
