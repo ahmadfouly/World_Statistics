@@ -13,7 +13,7 @@ def set_bg_hack_url():
          f"""
          <style>
          .stApp {{
-             background-image: url("https://img.freepik.com/premium-vector/abstract-mash-business-dots-scales-dark-background-with-map-world_23979-23.jpg?w=1480");
+             background-image: url("https://images.rawpixel.com/image_png_1100/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvam9iNjc5LTEyMy1wLWwxNjd4NHAzLnBuZw.png");
              background-size: cover;
              background-repeat: no-repeat;
              background-attachment: fixed;
