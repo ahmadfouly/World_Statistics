@@ -19,7 +19,7 @@ world_data = load_data("CountriesData.csv")
 
 
 # Streamlit app layout
-st.set_page_config(page_title="World Data Explorer", page_icon="🌍", layout="wide")
+st.set_page_config(page_title="World Data Explorer", page_icon="", layout="wide")
 
 st.markdown("""
 # World Data Explorer
