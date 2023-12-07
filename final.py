@@ -35,15 +35,23 @@ To begin, open the sidebar by clicking on the '>' icon at the top-left corner.
 Dive into the World Data Explorer and unlock insights from global data trends!
 """, unsafe_allow_html=True)
 
+def reset_selections():
+    # Resetting each widget's value in the session state
+    st.session_state['selected_countries'] = []
+    st.session_state['selected_metrics'] = []
+    st.session_state['selected_years'] = [min_year, max_year]
+    st.session_state['chart_type'] = "Line Graph"
 if 'selected_countries' not in st.session_state:
     st.session_state['selected_countries'] = []
+if 'selected_metrics' not in st.session_state:
+    st.session_state['selected_metrics'] = []
 
-def reset_selections():
-    for key in st.session_state.keys():
-        del st.session_state[key]
+selected_countries = st.multiselect("Select Countries", world_data['Entity'].unique(), default=st.session_state['selected_countries'])
+selected_metrics = st.multiselect("Select Metrics", [all_metrics_option] + metrics, default=st.session_state['selected_metrics'])
 
 if st.sidebar.button('Reset'):
     reset_selections()
+
 
 # Sidebar for user inputs
 with st.sidebar:
