@@ -4,7 +4,8 @@ import numpy as np
 import altair as alt
 import streamlit as st
 
-
+# Streamlit app layout
+st.set_page_config(page_title="World Data Explorer", page_icon="🌍", layout="wide")
 
 # Function to load data
 @st.cache_data
@@ -18,8 +19,7 @@ def load_data(csv):
 world_data = load_data("CountriesData.csv")
 
 
-# Streamlit app layout
-st.set_page_config(page_title="World Data Explorer", page_icon="", layout="wide")
+
 
 st.markdown("""
 # World Data Explorer
